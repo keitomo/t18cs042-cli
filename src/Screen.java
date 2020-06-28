@@ -3,8 +3,7 @@ import java.util.List;
 
 public class Screen {
 
-	private static final String[] ScreenName = {"Story" , "Title" , "Game" , "GameOver" , "GameClear"};
-	private static final List<String> ScreenList = Arrays.asList(ScreenName);
+	//ScreenNameList {"Story" , "Title" , "Game" , "GameOver" , "GameClear"};
 	private ConsoleView view;
 	private String nowScreen;
 	private Text text;
@@ -46,11 +45,7 @@ public class Screen {
 	public boolean getClearFlag() {
 		return clearFlag;
 	}
-	
-	public static Integer GetScreenNum(String ScreenName) {
-		return ScreenList.indexOf(ScreenName);
-	}
-	
+		
 	public void ScreenController(String ScreenName,String event) {
 		if(ScreenName == "Story") {
 			nowScreen = "Story";
@@ -124,6 +119,7 @@ public class Screen {
 		input="";
 		problem="";
 		clearFlag=false;
+		time=0;
 	}
 	
 	private void drawGame(String event) {
