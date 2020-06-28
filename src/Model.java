@@ -7,8 +7,6 @@ public class Model {
 	private Screen				screen;
 	public final static int WIDTH = 80;
 	public final static int HEIGHT = 24;
-	//private int time=0;
-	String problem;
 
 	public Model() {
 		view		=	new ConsoleView(this,WIDTH,HEIGHT);

@@ -1,6 +1,3 @@
-import java.util.Arrays;
-import java.util.List;
-
 public class Screen {
 
 	//ScreenNameList {"Story" , "Title" , "Game" , "GameOver" , "GameClear"};
@@ -34,10 +31,6 @@ public class Screen {
 		text = new Text();
 	}
 	
-	public int centered(String s) {
-		return ((width - s.length())/2);
-	}
-	
 	public String getNowScreen() {
 		return nowScreen;
 	}
@@ -64,6 +57,9 @@ public class Screen {
 				setProblem();
 			}
 			drawGame(event);
+		}else {
+			System.out.println("ScreenController error");
+			System.exit(0);
 		}
 	}
 	//Story処理
@@ -134,7 +130,7 @@ public class Screen {
 			view.drawRect('*', 5, 2, 70, 5);
 			if(event.length() > 0 && !Text.matchText(problem,input)) {
 				input_num++;
-				if(Text.CheckText(problem, event.charAt(0), check_num) ) {
+				if(Text.checkText(problem, event.charAt(0), check_num) ) {
 					check_num++;
 					match_num++;
 					input += event;

@@ -49,7 +49,7 @@ public class Text {
 		return kana2rome(WordList.get(randomValue));
 	}
 
-	public static boolean CheckText(String problem, char input,int count) {
+	public static boolean checkText(String problem, char input,int count) {
 		return (problem.charAt(count) == input);
 	}
 	
