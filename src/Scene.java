@@ -79,9 +79,6 @@ public class Scene {
 		game.processingGame(event);
 		if(game.getUpdateFlag()) {
 			view.clear();	
-			view.drawString(""+game.getHP(), 40, 5);
-			view.drawString(""+game.getTimeLimit()/20, 45, 5);
-			//view.drawString(""+game.getTimeLimit()/20, 39, 6);
 			view.drawRect('*', 5, 0, 70, 4);
 			if(game.getRemainingProblem() == 0) {
 				nowScene="GameClear";
