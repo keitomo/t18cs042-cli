@@ -125,6 +125,19 @@ public class Text {
 		}
 		return t.toString();
 	}
-
+	
+	public static boolean isZenkaku(char c) {
+        return String.valueOf(c).getBytes().length > 1;
+	}
+	
+	public static int countStringLength(String s) {
+		int count=0;
+		for(int i=0;i<s.length();i++) {
+			char c = s.charAt(i);
+			if (isZenkaku(c)) count+=2;
+			else count++;
+		}
+		return count;
+	}
 
 }

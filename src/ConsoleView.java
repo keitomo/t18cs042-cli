@@ -2,40 +2,30 @@
 public class ConsoleView {
 
 	private char[][] screen;
-	private Model model;
 	private int width;
 	private int height;
 	private final static int WIDTH = 80;
 	private final static int HEIGHT = 24;
+	private final static char BLANK = ' ';
 	
-	public ConsoleView(Model model) {
-		this(model, WIDTH,HEIGHT);
+	public ConsoleView() {
+		this(WIDTH,HEIGHT);
 	}
-	public ConsoleView(Model model, int width,int height) {
-		this.model = model;
+	public ConsoleView(int width,int height) {
 		this.width = width;
 		this.height= height;
 		screen = new char[width][height];
 		clear();
 	}
 	
-	public static boolean isZenkaku(char c) {
-        return String.valueOf(c).getBytes().length > 1;
-	}
-	
-	public static int countZenkaku(String s) {
-		int count=0;
-		for(int i=0;i<s.length();i++) {
-			char c = s.charAt(i);
-			if (isZenkaku(c)) count++;
-		}
-		return count;
+	public int Center(String s) {
+		return (width - Text.countStringLength(s))/2 ;
 	}
 
 	public void clear() { //　スクリーン初期化
 		for(int y=0;y<height;y++) {
 			for(int x=0;x<width;x++) {
-				screen[x][y]=' ';
+				screen[x][y]=BLANK;
 			}
 		}
 	}
@@ -45,7 +35,7 @@ public class ConsoleView {
 			for(int x=0;x<width;x++) {
 				char c = screen[x][y];
 				System.out.print(c);
-				if (isZenkaku(c))
+				if (Text.isZenkaku(c))
 					x++;
 			}
 			System.out.println();
@@ -61,7 +51,7 @@ public class ConsoleView {
 		for(int i=0,j=0;i<s.length();i++,j++) {
 			char c = s.charAt(i);
 			put(c,x+j,y);
-			if (isZenkaku(c)) j++;
+			if (Text.isZenkaku(c)) j++;
 		}
 	}
 
@@ -76,7 +66,7 @@ public class ConsoleView {
 			}
 			char c = s.charAt(i);
 			put(c,x+j,y+indent);
-			if (isZenkaku(c)) j++;
+			if (Text.isZenkaku(c)) j++;
 			s_width++;
 		}
 		return indent;
@@ -110,6 +100,26 @@ public class ConsoleView {
 			double j = b* Math.sqrt(1 - Math.pow(i,2) / Math.pow(a, 2));
 			put(c,(int)(x+i+0.5),(int)(y+j+0.5));
 			put(c,(int)(x+i+0.5),(int)(y-j+0.5));
+		}
+	}
+	
+	public void drawSnowman(char c,int x,int y,int HP) {
+		if(HP == 1) {
+			drawOval(c,x,y-1,3,2);
+		}else if(HP == 2) {
+			drawOval(c,x,y-1,5,3);
+			drawOval(c,x,y-4,3,2);
+			put(' ',x,y+1);
+		}else if(HP == 3) {
+			drawOval(c,x,y-2,7,4);
+			drawOval(c,x,y-5,5,3);
+			put(' ',x,y-3);
+		}else if(HP == 4) {
+			drawOval(c,x,y-3,9,6);
+			drawOval(c,x,y-8,7,4);
+		}else if(HP >= 5) {
+			drawOval(c,x,y-4,12,8);
+			drawOval(c,x,y-11,9,6);
 		}
 	}
 	

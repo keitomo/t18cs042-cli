@@ -4,40 +4,45 @@ public class Model {
 
 	private ConsoleView			view;
 	private ConsoleController	controller;
-	private Screen				screen;
-	public final static int WIDTH = 80;
-	public final static int HEIGHT = 24;
+	private Scene				scene;
+	private final static int WIDTH = 80;
+	private final static int HEIGHT = 24;
 
 	public Model() {
-		view		=	new ConsoleView(this,WIDTH,HEIGHT);
+		view		=	new ConsoleView(WIDTH,HEIGHT);
 		controller	=	new ConsoleController(this);
-		screen		= 	new Screen(view,WIDTH,HEIGHT);
+		scene		= 	new Scene(view);
 	}
 
 	public synchronized void process(String event) {
 		if (event.equals("TIME_ELAPSED")) { //時間経過時の処理
-			if(screen.getNowScreen().equals("Game")) {
-				screen.ScreenController("Game",event);
+			if(scene.getNowScene().equals("Game")) {
+				scene.sceneController("Game",event);
 			}
 		
 		}else { //タイピング時の処理
-			if(screen.getNowScreen().equals("Story")) {
+			if(scene.getNowScene().equals("Story")) {
 				if(event.equals("")) {
-					screen.ScreenController("Title",event);
+					scene.sceneController("Title",event);
 				}
-			}else if(screen.getNowScreen().equals("Title")) {
+			}else if(scene.getNowScene().equals("Title")) {
 				if(event.equals("UP") || event.equals("DOWN")||event.equals("HOME"))
-					screen.ScreenController("Title",event);
+					scene.sceneController("Title",event);
 				if(event.equals("")) 
-					screen.ScreenController("Game",event);
-			}else if(screen.getNowScreen().equals("Game")) {
-					screen.ScreenController("Game",event);
-			}
+					scene.sceneController("Game",event);
+			}else if(scene.getNowScene().equals("Game")) {
+				scene.sceneController("Game",event);
+			}else if(scene.getNowScene().equals("GameClear") || scene.getNowScene().equals("GameOver")) {
+				if(event.equals("")) {
+					scene.sceneController("Title", event);
+				}
+				
+			}//*/
 		}
 	}
 
 	public void run() throws IOException {
-		screen.ScreenController("Story","");
+		scene.sceneController("Story","");
 		controller.run();
 		view.clear();
 		view.drawString("GAME END", 36, 12);
