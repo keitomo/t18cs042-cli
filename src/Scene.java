@@ -4,13 +4,18 @@ public class Scene {
 	private ConsoleView view;
 	private String nowScene;
 	private Game game;
+	private ScoreList scorelist;
 	private int difficult=0;
 	private static int EASY = 0;
+	private static int NORMAL = 1;
 	private static int HARD = 2;
-	
+	private final static String EASYSCORE = "./easy_score.txt";
+	private final static String NORMALSCORE = "./normal_score.txt";
+	private final static String HARDSCORE = "./hard_score.txt";
 	
 	public Scene(ConsoleView view) {
 		this.view = view;
+		this.scorelist = new ScoreList();
 	}
 	
 	public String getNowScene() {
@@ -122,12 +127,48 @@ public class Scene {
 	
 	private void drawGameClear() {
 		view.clear();
+		
+		//ここから自己スコア表示
 		view.drawRect('*', 10, 3 , 60, 5);
 		view.drawString("脱出成功！！", view.Center("脱出成功！！"), 4);
 		String timeAndMiss = "タイム："+(game.getTime()/20)+"秒　ミス："+(game.getInputNum()-game.getMatchNum())+"回";
 		view.drawString(timeAndMiss, view.Center(timeAndMiss), 5);
-		String score = "スコア："+game.getMatchNum();
+		String score = "スコア："+game.getScore()+"%";
 		view.drawString(score, view.Center(score), 6);
+		if(difficult == EASY) {
+			scorelist.WriteScore(EASYSCORE, new Score(game.getScore(),Score.getNowData()));
+		}else if(difficult == NORMAL){
+			scorelist.WriteScore(NORMALSCORE, new Score(game.getScore(),Score.getNowData()));
+		}else if(difficult == HARD){
+			scorelist.WriteScore(HARDSCORE, new Score(game.getScore(),Score.getNowData()));
+		}
+		
+
+		//ここからランキング表示
+		view.drawRect('*', 13 , 10 , 54, 9 );
+		if(difficult == EASY) {
+			scorelist.LoadScore(EASYSCORE);
+		}else if(difficult == NORMAL){
+			scorelist.LoadScore(NORMALSCORE);
+		}else if(difficult == HARD){
+			scorelist.LoadScore(HARDSCORE);
+		}
+		scorelist.sortScoreList();
+		String score1 = "1          "+
+				String.format("%5s", Double.toString(scorelist.getScore(0).getScore()))+
+				"%          "+scorelist.getScore(0).getData();
+		String score2 = "2          "+
+				String.format("%5s", Double.toString(scorelist.getScore(1).getScore()))+
+				"%          "+scorelist.getScore(1).getData();
+		String score3 = "3          "+
+				String.format("%5s", Double.toString(scorelist.getScore(2).getScore()))+
+				"%          "+scorelist.getScore(2).getData();
+		
+		view.drawString(score1, view.Center(score1), 12);
+		view.drawString(score2, view.Center(score2), 14);
+		view.drawString(score3, view.Center(score3), 16);
+		
+		
 		view.paint();
 		game = null;
 	}

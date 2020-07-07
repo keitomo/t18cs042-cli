@@ -1,10 +1,18 @@
 
 public class Game {
 	
+	private static int EASY = 0;
+	private static int NORMAL = 1;
+	private static int HARD = 2;
+	
+	private static String EASYLIST = "./easy_list.txt";
+	private static String NORMALLIST = "./normal_list.txt";
+	private static String HARDLIST = "./hard_list.txt";
+	
 	private Text text;
 	String input = "";
 	String problem = "";
-	private int difficult=0;
+	private int difficult=EASY;
 	private int inputNum=0;
 	private int checkNum=0;
 	private int matchNum=0;
@@ -14,9 +22,7 @@ public class Game {
 	private int HP=5;
 	private boolean updateFlag = true;
 	
-	private static int EASY = 0;
-	private static int NORMAL = 1;
-	private static int HARD = 2;
+
 	
 	
 	public Game(int difficult) {
@@ -27,13 +33,13 @@ public class Game {
 
 	private void setGame() {
 		if(difficult == EASY) {
-			text.setWordList("./word_list.txt");
+			text.setWordList(EASYLIST);
 			remainingProblemNum=20;
 		}else if(difficult == NORMAL) {
-			text.setWordList("./word_list.txt");
+			text.setWordList(NORMALLIST);
 			remainingProblemNum=30;
 		}else if(difficult == HARD) {
-			text.setWordList("./word_list.txt");
+			text.setWordList(HARDLIST);
 			remainingProblemNum=50;
 		}
 		setProblem();
@@ -81,6 +87,12 @@ public class Game {
 	
 	public void setUpdateFlag() {
 		updateFlag = false;
+	}
+	
+	public double getScore() {
+		double missType = (double)inputNum - (double)matchNum;
+		double score = (((double)inputNum-missType)/(double)inputNum)*100;
+		return ((double)Math.round(score * 10))/10;
 	}
 
 	
