@@ -100,7 +100,7 @@ public class Game {
 		if (event.equals("TIME_ELAPSED")) {
 			time++;
 			timeLimit--;
-			if(time%20 == 0)
+			if(time%600 == 0)
 				updateFlag = true;
 		}else {
 			if(event.length() > 0 && !Text.matchText(problem,input)) {

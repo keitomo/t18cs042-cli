@@ -34,7 +34,7 @@ class TextTest {
 	@Test
 	void 文字列をローマ字に変換する() {
 		Text text = new Text();
-		assertEquals("fairu",text.kana2rome("ふぁいる"));
+		assertEquals("konnpyu-ta",text.kana2rome("こんぴゅーた"));
 		assertEquals("firumu",text.kana2rome("ふぃるむ"));
 		assertEquals("teiramisu",text.kana2rome("てぃらみす"));
 	}

@@ -63,17 +63,17 @@ public class Scene {
 	
 	//Title処理
 	
-	private void drawTitle(int i) {
+	private void drawTitle(int difficult) {
 		view.clear();
 		view.drawString("砂漠からの脱出",view.Center("砂漠からの脱出"),4); //Title
 		view.drawString("初級",view.Center("初級"),12);
 		view.drawString("中級",view.Center("初級"),15);
 		view.drawString("上級",view.Center("初級"),18);
-		if(i==0)
+		if(difficult==EASY)
 			view.drawString("->",36,12);
-		else if(i==1)
+		else if(difficult==NORMAL)
 			view.drawString("->",36,15);
-		else if(i==2)
+		else if(difficult==HARD)
 			view.drawString("->",36,18);
 		view.paint();
 	}
@@ -84,7 +84,7 @@ public class Scene {
 		game.processingGame(event);
 		if(game.getUpdateFlag()) {
 			view.clear();	
-			view.drawRect('*', 5, 0, 70, 4);
+			view.drawRect('*', 5, 1, 70, 4);
 			if(game.getRemainingProblem() == 0) {
 				nowScene="GameClear";
 				drawGameClear();
@@ -94,10 +94,10 @@ public class Scene {
 				drawGameOver();
 				return;
 			}else {
-				view.drawString(game.getProblem(), view.Center(game.getProblem()) ,1);
+				view.drawString(game.getProblem(), view.Center(game.getProblem()) ,2);
 				view.drawSnowman('*', 40, 20, game.getHP());
 			}
-			view.drawString(game.getInput(), view.Center(game.getProblem()) ,2);
+			view.drawString(game.getInput(), view.Center(game.getProblem()) ,3);
 			view.drawString("あと "+game.getRemainingProblem()+" 問", 60,20);
 			view.drawString("総タイプ数　："+game.getInputNum(), 60, 18);
 			view.drawString("正解タイプ数："+game.getMatchNum(), 60, 19);

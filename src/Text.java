@@ -94,7 +94,7 @@ public class Text {
 		m.put("じゃ", "ja");m.put("じゅ", "ju");m.put("じょ", "jo");
 		m.put("ぢゃ", "dya");m.put("ぢゅ", "dyu");m.put("ぢょ", "dyo");
 		m.put("びゃ", "bya");m.put("びゅ", "byu");m.put("びょ", "byo");
-		m.put("ぴゃ", "pya");m.put("びゅ", "pyu");m.put("ぴょ", "pyo");
+		m.put("ぴゃ", "pya");m.put("ぴゅ", "pyu");m.put("ぴょ", "pyo");
 		m.put("ふぁ","fa");m.put("ふぃ","fi");m.put("ふぇ","fe");m.put("ふぉ","fo");
 		m.put("しぇ","sye");m.put("ちぇ","che");m.put("てぃ","tei");m.put("しぇ","sye");
 		m.put("うぃ","wi");m.put("うぇ", "we");
