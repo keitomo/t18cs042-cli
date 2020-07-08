@@ -60,7 +60,7 @@ public class ScoreList {
 	        if (checkBeforeWritefile(file)){
 	          BufferedWriter bw = new BufferedWriter(new FileWriter(file,true));
 
-	          bw.write(""+s.getScore()+" "+s.getData());
+	          bw.write(""+s.getScore()+" "+s.getDate());
 	          bw.newLine();
 	          
 	          bw.close();

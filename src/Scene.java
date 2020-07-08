@@ -9,9 +9,9 @@ public class Scene {
 	private static int EASY = 0;
 	private static int NORMAL = 1;
 	private static int HARD = 2;
-	private final static String EASYSCORE = "./easy_score.txt";
-	private final static String NORMALSCORE = "./normal_score.txt";
-	private final static String HARDSCORE = "./hard_score.txt";
+	private final static String EASYSCORE = "./text/easy_score.txt";
+	private final static String NORMALSCORE = "./text/normal_score.txt";
+	private final static String HARDSCORE = "./text/hard_score.txt";
 	
 	public Scene(ConsoleView view) {
 		this.view = view;
@@ -22,7 +22,7 @@ public class Scene {
 		return nowScene;
 	}
 			
-	public void sceneController(String sceneName,String event) {
+	public void controller(String sceneName,String event) {
 		if(sceneName == "Story") {
 			nowScene = "Story";
 			drawStory();
@@ -93,7 +93,7 @@ public class Scene {
 				nowScene="GameOver";
 				drawGameOver();
 				return;
-			}else {
+			}else{
 				view.drawString(game.getProblem(), view.Center(game.getProblem()) ,2);
 				view.drawSnowman('*', 40, 20, game.getHP());
 			}
@@ -136,11 +136,11 @@ public class Scene {
 		String score = "スコア："+game.getScore()+"%";
 		view.drawString(score, view.Center(score), 6);
 		if(difficult == EASY) {
-			scorelist.WriteScore(EASYSCORE, new Score(game.getScore(),Score.getNowData()));
+			scorelist.WriteScore(EASYSCORE, new Score(game.getScore(),Score.getNowDate()));
 		}else if(difficult == NORMAL){
-			scorelist.WriteScore(NORMALSCORE, new Score(game.getScore(),Score.getNowData()));
+			scorelist.WriteScore(NORMALSCORE, new Score(game.getScore(),Score.getNowDate()));
 		}else if(difficult == HARD){
-			scorelist.WriteScore(HARDSCORE, new Score(game.getScore(),Score.getNowData()));
+			scorelist.WriteScore(HARDSCORE, new Score(game.getScore(),Score.getNowDate()));
 		}
 		
 
@@ -156,13 +156,13 @@ public class Scene {
 		scorelist.sortScoreList();
 		String score1 = "1          "+
 				String.format("%5s", Double.toString(scorelist.getScore(0).getScore()))+
-				"%          "+scorelist.getScore(0).getData();
+				"%          "+scorelist.getScore(0).getDate();
 		String score2 = "2          "+
 				String.format("%5s", Double.toString(scorelist.getScore(1).getScore()))+
-				"%          "+scorelist.getScore(1).getData();
+				"%          "+scorelist.getScore(1).getDate();
 		String score3 = "3          "+
 				String.format("%5s", Double.toString(scorelist.getScore(2).getScore()))+
-				"%          "+scorelist.getScore(2).getData();
+				"%          "+scorelist.getScore(2).getDate();
 		
 		view.drawString(score1, view.Center(score1), 12);
 		view.drawString(score2, view.Center(score2), 14);

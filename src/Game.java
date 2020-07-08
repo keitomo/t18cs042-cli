@@ -5,9 +5,9 @@ public class Game {
 	private static int NORMAL = 1;
 	private static int HARD = 2;
 	
-	private static String EASYLIST = "./easy_list.txt";
-	private static String NORMALLIST = "./normal_list.txt";
-	private static String HARDLIST = "./hard_list.txt";
+	private static String EASYLIST = "./text/easy_list.txt";
+	private static String NORMALLIST = "./text/normal_list.txt";
+	private static String HARDLIST = "./text/hard_list.txt";
 	
 	private Text text;
 	String input = "";
@@ -20,10 +20,7 @@ public class Game {
 	private int time=0;
 	private int timeLimit=3000;
 	private int HP=5;
-	private boolean updateFlag = true;
-	
-
-	
+	private boolean updateFlag = true;	
 	
 	public Game(int difficult) {
 		this.difficult = difficult;
