@@ -16,23 +16,23 @@ public class Model {
 
 	public synchronized void process(String event) {
 		if (event.equals("TIME_ELAPSED")) { //時間経過時の処理
-			if(scene.getNowScene().equals("Game")) {
+			if(scene.getSceneComp("Game")) {
 				scene.controller("Game",event);
 			}
 		
 		}else { //タイピング時の処理
-			if(scene.getNowScene().equals("Story")) {
+			if(scene.getSceneComp("Story")) {
 				if(event.equals("")) {
 					scene.controller("Title",event);
 				}
-			}else if(scene.getNowScene().equals("Title")) {
+			}else if(scene.getSceneComp("Title")) {
 				if(event.equals("UP") || event.equals("DOWN"))
 					scene.controller("Title",event);
 				if(event.equals("")) 
 					scene.controller("Game",event);
-			}else if(scene.getNowScene().equals("Game")) {
+			}else if(scene.getSceneComp("Game")) {
 				scene.controller("Game",event);
-			}else if(scene.getNowScene().equals("GameClear") || scene.getNowScene().equals("GameOver")) {
+			}else if(scene.getSceneComp("GameClear") || scene.getSceneComp("GameOver")) {
 				if(event.equals("")) {
 					scene.controller("Title", event);
 				}

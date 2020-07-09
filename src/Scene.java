@@ -18,8 +18,8 @@ public class Scene {
 		this.scorelist = new ScoreList();
 	}
 	
-	public String getNowScene() {
-		return nowScene;
+	public boolean getSceneComp(String scene) {
+		return nowScene.equals(scene);
 	}
 			
 	public void controller(String sceneName,String event) {

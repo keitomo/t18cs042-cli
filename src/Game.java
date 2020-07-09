@@ -5,9 +5,10 @@ public class Game {
 	private static int NORMAL = 1;
 	private static int HARD = 2;
 	
-	private static String EASYLIST = "./text/easy_list.txt";
-	private static String NORMALLIST = "./text/normal_list.txt";
-	private static String HARDLIST = "./text/hard_list.txt";
+	private static String HOME = System.getProperty("user.dir");
+	private static String EASYLIST = HOME+"/text/easy_list.txt";
+	private static String NORMALLIST = HOME+"/text/normal_list.txt";
+	private static String HARDLIST = HOME+"/text/hard_list.txt";
 	
 	private Text text;
 	String input = "";
@@ -99,10 +100,10 @@ public class Game {
 			timeLimit--;
 			if(time%600 == 0)
 				updateFlag = true;
-		}else {
+		}else{
 			if(event.length() > 0 && !Text.matchText(problem,input)) {
 				inputNum++;
-				if(Text.checkText(problem, event.charAt(0), checkNum) ) {
+				if(Text.checkText(problem, event.charAt(0), checkNum)) {
 					checkNum++;
 					matchNum++;
 					input += event;

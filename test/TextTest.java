@@ -37,6 +37,25 @@ class TextTest {
 		assertEquals("konnpyu-ta",text.kana2rome("こんぴゅーた"));
 		assertEquals("firumu",text.kana2rome("ふぃるむ"));
 		assertEquals("teiramisu",text.kana2rome("てぃらみす"));
+		assertEquals("kurikku",text.kana2rome("くりっく"));
+	}
+	
+	@Test
+	void 全角だったらTrueを返す() {
+		assertEquals(true,Text.isZenkaku('あ'));
+	}
+	
+	@Test
+	void 半角だったらFalseを返す() {
+		assertEquals(false,Text.isZenkaku('a'));
+	}
+	
+	@Test
+	void 文字の長さを判定する() {
+		assertEquals(1,Text.countStringLength("a"));
+		assertEquals(2,Text.countStringLength("あ"));
+		assertEquals(3,Text.countStringLength("aあ"));
+		assertEquals(9,Text.countStringLength("あいうabc"));		
 	}
 
 }
